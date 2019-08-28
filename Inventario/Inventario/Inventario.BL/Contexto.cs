@@ -12,7 +12,7 @@ namespace Inventario.BL
     {
 
         public Contexto() : base(@"Data Source=(LocalDb)\MSSQLLocalDB;AttachDBFilename=" +
-            Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\QuieroPizzaDB.mdf")
+            Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\InventarioDB.mdf")
         {
 
 
