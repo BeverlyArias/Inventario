@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace Inventario.WebAdmin.Controllers
 {
+    [Authorize]
     public class PedidoDetalleController : Controller
     {
         PedidosBL _pedidoBL;
@@ -32,7 +33,7 @@ namespace Inventario.WebAdmin.Controllers
             var nuevoPedidoDetalle = new PedidoDetalle();
             nuevoPedidoDetalle.PedidoId = id;
 
-            var productos = _productosBL.ObtenerProductos();
+            var productos = _productosBL.ObtenerProductosActivos();
             ViewBag.ProductoId = new SelectList(productos, "Id", "Descripcion");
 
             return View(nuevoPedidoDetalle);
@@ -53,7 +54,7 @@ namespace Inventario.WebAdmin.Controllers
                 return RedirectToAction("Index", new { id = pedidoDetalle.PedidoId });
             }
 
-            var productos = _productosBL.ObtenerProductos();
+            var productos = _productosBL.ObtenerProductosActivos();
             ViewBag.ProductoId = new SelectList(productos, "Id", "Descripcion");
 
             return View(pedidoDetalle);

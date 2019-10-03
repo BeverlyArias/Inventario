@@ -21,14 +21,19 @@ namespace Inventario.BL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            Database.SetInitializer(new DatosdeInicio()); //Agregar datos de inicio al momento de crear la BD 
         }
 
         public DbSet<Producto> Productos { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Proveedor> Proveedores { get; set; }
+        public DbSet<Seccion> Secciones { get; set; }
 
         public DbSet<Pedido> Pedidos { get; set; }
         public DbSet<PedidoDetalle> PedidoDetalle { get; set; }
+        public DbSet<Usuario> Usuarios{ get; set; }
 
+        public DbSet<Salida> Salidas { get; set; }
+        public DbSet<SalidaDetalle> SalidaDetalle { get; set; }
     }
 }

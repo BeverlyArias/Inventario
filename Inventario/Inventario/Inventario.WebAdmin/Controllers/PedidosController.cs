@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace Inventario.WebAdmin.Controllers
 {
+    [Authorize]
     public class PedidosController : Controller
     {
         PedidosBL _pedidosBL;
@@ -29,7 +30,7 @@ namespace Inventario.WebAdmin.Controllers
         public ActionResult Crear()
         {
             var nuevoPedido = new Pedido();
-            var proveedores = _proveedoresBL.ObtenerProveedores();
+            var proveedores = _proveedoresBL.ObtenerProveedoresActivos();
 
             ViewBag.ProveedorId = new SelectList(proveedores, "Id", "Nombre");
 
@@ -52,7 +53,7 @@ namespace Inventario.WebAdmin.Controllers
                 return RedirectToAction("Index");
             }
 
-            var proveedores = _proveedoresBL.ObtenerProveedores();
+            var proveedores = _proveedoresBL.ObtenerProveedoresActivos();
 
             ViewBag.ProveedorId = new SelectList(proveedores, "Id", "Nombre");
 
@@ -62,7 +63,7 @@ namespace Inventario.WebAdmin.Controllers
         public ActionResult Editar(int id)
         {
             var pedido = _pedidosBL.ObtenerPedido(id);
-            var proveedores = _proveedoresBL.ObtenerProveedores();
+            var proveedores = _proveedoresBL.ObtenerProveedoresActivos();
 
             ViewBag.ProveedorId = new SelectList(proveedores, "Id", "Nombre", pedido.ProveedorId);
 
@@ -86,7 +87,7 @@ namespace Inventario.WebAdmin.Controllers
                 return RedirectToAction("Index");
             }
 
-            var proveedores = _proveedoresBL.ObtenerProveedores();
+            var proveedores = _proveedoresBL.ObtenerProveedoresActivos();
 
             ViewBag.ProveedoresId = new SelectList(proveedores, "Id", "Nombre", pedido.ProveedorId);
 

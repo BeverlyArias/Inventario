@@ -19,8 +19,19 @@ namespace Inventario.BL
 
         public List<Proveedor> ObtenerProveedores()
         {
-            ListadeProveedores = _contexto.Proveedores.ToList();
+            ListadeProveedores = _contexto.Proveedores
+                .OrderBy(r => r.Nombre)
+                .ToList();
             return ListadeProveedores; 
+        }
+
+        public List<Proveedor> ObtenerProveedoresActivos()
+        {
+            ListadeProveedores = _contexto.Proveedores
+                .Where(r => r.Activo == true)
+                .OrderBy(r =>r.Nombre)
+                .ToList();
+            return ListadeProveedores;
         }
 
         public void GuardarProveedor(Proveedor proveedor)
